@@ -16,6 +16,6 @@ Requires a pre-trained DLib facial landmark detector model in a .dat file.
 #### Using binary thresholding
 Uses OpenCV Haar Cascade classifiers to detect face, and then for eyes within a rough area defined inside the face bounding-box. Eye state classification is done by thresholding the image on skin color and counting the number of black pixels, with the threshold normalized for skin color via HSV histogram
 
-![alt text][landmarks]
+![alt text][binary]
 
-[landmarks]: https://raw.githubusercontent.com/sahnimanas/Fatigue-Detection/master/binary.png "Binary thresholding"
+[binary]: https://raw.githubusercontent.com/sahnimanas/Fatigue-Detection/master/binary.png "Binary thresholding"
