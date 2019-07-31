@@ -9,7 +9,6 @@
 
 #define CHECK_PERIOD 10
 
-
 using namespace dlib;
 using namespace std;
 using namespace cv;
@@ -79,8 +78,17 @@ void calibrate(std::vector<double> &pastRatios, VideoCapture &cap, frontal_face_
 	cout << "------------------DONE CALIBRATING------------------\n";
 }
 
-int main()
+int main(int argc, char* argv[])
 {
+    if (argc < 2) {
+        cout << "Usage: " << argv[0] << " <POSE_MODEL_PATH" << endl
+             << "Download the DLib pose model from  "
+	     << "http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2"
+	     << " and provide the path to the extracted *.dat file as POSE_MODEL_PATH"
+	     << endl;
+	return 0;
+    }
+	
     try
     {
         cv::VideoCapture cap(0);
@@ -94,7 +102,7 @@ int main()
 
         frontal_face_detector detector = get_frontal_face_detector();
         shape_predictor pose_model;
-        deserialize("C:/dlib-19.2/python_examples/shape_predictor_68_face_landmarks.dat") >> pose_model;
+        deserialize(argv[1]) >> pose_model;
 		double ratio;
 		Mat temp;
         // Grab and process frames until the main window is closed by the user.
